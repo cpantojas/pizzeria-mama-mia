@@ -1,0 +1,17 @@
+.formLogin{ 
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+}
+
+.error {
+    padding: 10px;
+    color: white;
+    background-color: red;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 10px;
+}
