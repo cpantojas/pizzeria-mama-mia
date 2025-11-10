@@ -5,18 +5,18 @@ import NavbarComponent from './components/nav/NavbarComponent.jsx';
 import FooterComponent from './components/footer/FooterComponent.jsx';
 import RegisterComponent from './components/register/RegisterComponent.jsx';
 import LoginComponent from './components/login/LoginComponent.jsx';
+import CartComponent from './components/cart/CartComponent.jsx';
 
 function App() {
   return (
     <div className='mainContainer'>
-      <nav className="nav">
-          <NavbarComponent />
-      </nav>  
+      <NavbarComponent />
       <main className="home">
-          {/* <HomeComponent/> */}
           {/*NOTA: se debe comentar o descomentar el componente necesario para su revisión/> */}
+          {/* <HomeComponent/> */}
           {/* <RegisterComponent /> */}
-          <LoginComponent />
+          {/* <LoginComponent /> */}
+          <CartComponent />
       </main>
       <footer className="footer">
           <FooterComponent />
