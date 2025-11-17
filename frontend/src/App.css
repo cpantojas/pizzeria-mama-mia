@@ -9,6 +9,7 @@
 .mainContainer {
     display: grid;
     grid-template-rows: 0.2fr 9.6fr 0.2fr;
+    min-height: 100vh;
 }
 
 .footer {

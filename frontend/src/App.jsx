@@ -6,6 +6,7 @@ import FooterComponent from './components/footer/FooterComponent.jsx';
 import RegisterComponent from './components/register/RegisterComponent.jsx';
 import LoginComponent from './components/login/LoginComponent.jsx';
 import CartComponent from './components/cart/CartComponent.jsx';
+import PizzaComponent from './components/pizzaviewer/pizzaComponent.jsx';
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
           {/*NOTA: se debe comentar o descomentar el componente necesario para su revisión/> */}
           {/* <HomeComponent/> */}
           {/* <RegisterComponent /> */}
-          {/* <LoginComponent /> */}
-          <CartComponent />
+          {/* <LoginComponent/> */}
+          {/* <CartComponent /> */}
+          <PizzaComponent/>
       </main>
       <footer className="footer">
           <FooterComponent />

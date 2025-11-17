@@ -34,6 +34,7 @@ export default function NavbarComponent() {
         <>
             <div className="navbar-container">
                 <div className="navbar-left">
+                    <img src="./pizza.png" alt="Pizzería Mamma Mía" className='logo'/>
                     <span className="navbar-brand">Pizzería Mamma Mia!</span>
                     <div className="button-group">
                     <Button variant="dark" className="nav-button">
