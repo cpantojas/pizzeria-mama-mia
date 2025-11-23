@@ -1,5 +1,5 @@
-import HeaderComponent from "../header/HeaderComponent";
-import CardPizza from '../card/CardPizza.jsx';
+import HeaderComponent from "../../components/header/HeaderComponent.jsx";
+import CardPizza from '../../components/card/CardPizza.jsx';
 import { useEffect, useState } from "react";
 
 export default function HomeComponent() {
