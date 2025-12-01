@@ -2,10 +2,14 @@ import { Button } from 'react-bootstrap';
 import { FaHome, FaUser, FaShoppingCart,FaFileSignature,FaSignOutAlt } from 'react-icons/fa';
 import { formatCurrencyCLP } from '../../helpers/formatters';
 import { Link } from 'react-router';
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext.jsx"
 
 export default function NavbarComponent() {
-    const total = 25000;
+    //const total = 25000;
     const token = true;
+
+    const {cart, calculateTotal} = useContext(CartContext);
 
     const unLoggedUserMenu = (
         <>  
@@ -46,7 +50,7 @@ export default function NavbarComponent() {
                 </div>
                 <div className="navbar-right">
                     <Button as={Link} to="/cart" variant="dark" className="cart-total">
-                        <FaShoppingCart className="cart-icon" /> Total: {formatCurrencyCLP(total)}
+                        <FaShoppingCart className="cart-icon" /> Total: {formatCurrencyCLP(calculateTotal(cart))}
                     </Button>
                 </div>
             </div>

@@ -1,25 +1,14 @@
 import { Container, Row, Col, Image, Button} from 'react-bootstrap';
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { formatCurrencyCLP } from '../../helpers/formatters';
 import { FaPizzaSlice,FaShoppingCart } from "react-icons/fa";
 import './pizzaComponent.css';
+import { PizzaContext } from "../../context/PizzaContext.jsx";
 
 export default function PizzaComponent() {
-    const [pizza, setPizzas] = useState([]);
-    //leyendo .env para obtener URL de la API
-    const urlAPI = import.meta.env.VITE_API_URL;
-  
-    //funcion patra obtener datos de la API
-    async function fetchPizza(idpizza) {
-      try {
-        const response = await fetch(urlAPI + '/' + idpizza);
-        const data = await response.json();
-        setPizzas(data);
-      } catch (error) {
-        console.error('Se produjo un error al obtener datos de la API:', error);
-      }
-    }
-  
+    
+  const {pizza, fetchPizza} = useContext(PizzaContext);
+
     //llamada a funcion para cargar las pizzas en el montaje del componente
     useEffect(() => {
       fetchPizza('p001');

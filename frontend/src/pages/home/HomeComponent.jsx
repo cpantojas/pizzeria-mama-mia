@@ -1,22 +1,11 @@
 import HeaderComponent from "../../components/header/HeaderComponent.jsx";
 import CardPizza from '../../components/card/CardPizza.jsx';
-import { useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
+import { PizzaContext } from "../../context/PizzaContext.jsx";
 
 export default function HomeComponent() {
-  const [pizzas, setPizzas] = useState([]);
-  //leyendo .env para obtener URL de la API
-  const urlAPI = import.meta.env.VITE_API_URL;
-
-  //funcion patra obtener datos de la API
-  async function fetchPizzas() {
-    try {
-      const response = await fetch(urlAPI);
-      const data = await response.json();
-      setPizzas(data);
-    } catch (error) {
-      console.error('Se produjo un error al obtener datos de la API:', error);
-    }
-  }
+  
+  const {pizzas, fetchPizzas} = useContext(PizzaContext);
 
   //llamada a funcion para cargar las pizzas en el montaje del componente
   useEffect(() => {

@@ -1,33 +1,11 @@
-import { useState } from "react"
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext.jsx"
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
-import { pizzaCart } from "../../assets/pizzas"
 import "./cartComponent.css"
 
 export default function CartComponent() {
-    const [cart, setCart] = useState(pizzaCart);
-
-    const addItem = (id) =>{
-        const updatedCart = cart
-        .map(cartItem => 
-            cartItem.id === id ? { ...cartItem, count: cartItem.count + 1 } : cartItem        
-        );
-        setCart(updatedCart);
-    }
-
-    const decreaseItem = (id) =>{
-        const updatedCart = cart
-        .map(cartItem => 
-            cartItem.id === id ? { ...cartItem, count: cartItem.count - 1 } : cartItem        
-        )
-        .filter((cartItem) => cartItem.count > 0);
-        setCart(updatedCart);
-    }
-
-    let sumatotal =0;
-    cart.forEach((item) => {
-        sumatotal += item.price * item.count;
-    });
-
+    
+    const {cart, addItem, decreaseItem, calculateTotal} = useContext(CartContext);
 
     return (
         <>
@@ -57,7 +35,7 @@ export default function CartComponent() {
 
                 <Row className="align-items-center mb-4">
                     <Col>
-                    <h2 className="total-text">Total: ${sumatotal.toLocaleString('es-CL')}</h2>
+                    <h2 className="total-text">Total: ${calculateTotal(cart).toLocaleString('es-CL')}</h2>
                     </Col>
                 </Row>
 

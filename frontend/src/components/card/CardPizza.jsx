@@ -3,8 +3,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { formatCurrencyCLP } from '../../helpers/formatters';
 import { FaPizzaSlice,FaEye,FaShoppingCart } from "react-icons/fa";
 import { Button } from 'react-bootstrap';
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext.jsx"
+import { useNavigate } from 'react-router';
 
 export default function CardPizza({ desc,id,img,ingredients,name,price }) {
+
+    // Inicializamos la función de navegación
+    const navigate = useNavigate();
+
+    const {addItem} = useContext(CartContext);
+
   return (
     <>
         <Card style={{ minWidth: '17rem'}} className="card-pizza" key={id}>
@@ -31,7 +40,11 @@ export default function CardPizza({ desc,id,img,ingredients,name,price }) {
                         <Button variant="light" className="button-card">
                         Ver Más  <FaEye className="button-icon-card" /> 
                         </Button>
-                        <Button variant="dark" className="button-card">
+                        <Button variant="dark" className="button-card" onClick={() => { 
+                                addItem(id, desc, img, ingredients, name, price); 
+                                navigate('/cart'); 
+                            }}
+                        >
                             Añadir  <FaShoppingCart className="button-icon-card" />
                         </Button>
                     </div>
