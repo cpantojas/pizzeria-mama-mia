@@ -1,11 +1,14 @@
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext.jsx"
+import { UserContext } from '../../context/UserContext.jsx';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import "./cartComponent.css"
 
 export default function CartComponent() {
     
     const {cart, addItem, decreaseItem, calculateTotal} = useContext(CartContext);
+
+    const { token } = useContext(UserContext);
 
     return (
         <>
@@ -41,7 +44,7 @@ export default function CartComponent() {
 
                 <Row>
                     <Col>
-                    <Button variant="dark" size="lg" className="pay-button w-100">Pagar</Button>
+                    <Button variant="dark" size="lg" className="pay-button w-100" disabled={!token}>Pagar</Button>
                     </Col>
                 </Row>
             </Container>

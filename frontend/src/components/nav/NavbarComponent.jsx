@@ -4,10 +4,11 @@ import { formatCurrencyCLP } from '../../helpers/formatters';
 import { Link } from 'react-router';
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext.jsx"
+import { UserContext } from '../../context/UserContext.jsx';
 
 export default function NavbarComponent() {
     //const total = 25000;
-    const token = true;
+    const { token,logOut } = useContext(UserContext);
 
     const {cart, calculateTotal} = useContext(CartContext);
 
@@ -28,7 +29,7 @@ export default function NavbarComponent() {
             <Button as={Link} to="/profile" variant="dark" className="nav-button">
                 <FaUser className="button-icon" /> Profile
             </Button>
-            <Button as={Link} to="/login" variant="dark" className="nav-button">
+            <Button as={Link} to="/login" variant="dark" className="nav-button" onClick={() => logOut()}>
                 <FaSignOutAlt className="button-icon" /> Logout
             </Button>
         </>

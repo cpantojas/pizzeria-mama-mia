@@ -4,14 +4,18 @@ import { formatCurrencyCLP } from '../../helpers/formatters';
 import { FaPizzaSlice,FaShoppingCart } from "react-icons/fa";
 import './pizzaComponent.css';
 import { PizzaContext } from "../../context/PizzaContext.jsx";
+import { useParams } from 'react-router';
 
 export default function PizzaComponent() {
     
   const {pizza, fetchPizza} = useContext(PizzaContext);
 
+    //obtener parametro de la url
+    const {id} = useParams();
+
     //llamada a funcion para cargar las pizzas en el montaje del componente
     useEffect(() => {
-      fetchPizza('p001');
+      fetchPizza(id);
     }, []);
     
 

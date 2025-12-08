@@ -19,15 +19,6 @@ const CartProvider = ({ children }) => {
         }
           
       };
-
-      // const increaseItem = (id) =>{
-      //   console.log(id);
-      //     const updatedCart = cart
-      //     .map(cartItem => 
-      //         cartItem.id === id ? { ...cartItem, count: cartItem.count + 1 } : cartItem        
-      //     );
-      //     setCart(updatedCart);
-      // }
   
       const decreaseItem = (id) =>{
           const updatedCart = cart

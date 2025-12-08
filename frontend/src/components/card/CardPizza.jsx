@@ -37,7 +37,9 @@ export default function CardPizza({ desc,id,img,ingredients,name,price }) {
                 <ListGroup.Item><strong><h5>Precio: {formatCurrencyCLP(price)}</h5></strong></ListGroup.Item>
                 <ListGroup.Item>
                     <div className="button-group-card">
-                        <Button variant="light" className="button-card">
+                        <Button variant="light" className="button-card" onClick={() => { 
+                                navigate('/pizzas/' + id); 
+                            }}>
                         Ver Más  <FaEye className="button-icon-card" /> 
                         </Button>
                         <Button variant="dark" className="button-card" onClick={() => { 

@@ -1,11 +1,15 @@
 import { useState } from "react"
+import { useContext } from "react"
 import { Form, Button } from 'react-bootstrap';
+import { UserContext } from '../../context/UserContext.jsx';
 import './LoginComponent.css';
 
 export default function LoginComponent() {
     const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const { token,logIn } = useContext(UserContext);
 
     function onEmailChange({target}){
         setEmail(target.value)
@@ -23,7 +27,9 @@ export default function LoginComponent() {
         if(password.length < 6){
             return "La contraseña debe tener al menos 6 caracteres";
         }
-        return ""; //si no hay errores
+
+        //si no hay errores
+        return ""; 
     }
 
     const onSubmitHandler = (event)=>{
@@ -31,6 +37,7 @@ export default function LoginComponent() {
         const errorMessage = validateForm();
         if(errorMessage===""){
             setError(errorMessage);
+            logIn(token)
             alert("Los datos de Login son válidos!");
         }else{
             setError(errorMessage);
