@@ -8,7 +8,7 @@ import { UserContext } from '../../context/UserContext.jsx';
 
 export default function NavbarComponent() {
     //const total = 25000;
-    const { token,logOut } = useContext(UserContext);
+    const { isAuthenticated, logOut } = useContext(UserContext);
 
     const {cart, calculateTotal} = useContext(CartContext);
 
@@ -29,7 +29,7 @@ export default function NavbarComponent() {
             <Button as={Link} to="/profile" variant="dark" className="nav-button">
                 <FaUser className="button-icon" /> Profile
             </Button>
-            <Button as={Link} to="/login" variant="dark" className="nav-button" onClick={() => logOut()}>
+            <Button as={Link} to="/login" variant="dark" className="nav-button" onClick={logOut}>
                 <FaSignOutAlt className="button-icon" /> Logout
             </Button>
         </>
@@ -46,7 +46,7 @@ export default function NavbarComponent() {
                     <Button as={Link} to="/" variant="dark" className="nav-button">
                         <FaHome className="button-icon" /> Home
                     </Button>
-                    { token ? LoggedUserMenu : unLoggedUserMenu }
+                    { isAuthenticated ? LoggedUserMenu : unLoggedUserMenu }
                     </div>
                 </div>
                 <div className="navbar-right">

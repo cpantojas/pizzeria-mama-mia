@@ -1,12 +1,15 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Form, Button } from 'react-bootstrap';
 import './RegisterComponent.css';
+import { UserContext } from '../../context/UserContext.jsx';
 
 export default function RegisterComponent() {
     const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const { register } = useContext(UserContext);
 
     function onEmailChange({target}){
         setEmail(target.value)
@@ -39,7 +42,8 @@ export default function RegisterComponent() {
         const errorMessage = validateForm();
         if(errorMessage===""){
             setError(errorMessage);
-            alert("Los datos de registro son válidos!");
+            register(JSON.stringify({email, password}));
+
         }else{
             setError(errorMessage);
         }

@@ -4,11 +4,18 @@ import { formatCurrencyCLP } from '../../helpers/formatters';
 import { FaPizzaSlice,FaShoppingCart } from "react-icons/fa";
 import './pizzaComponent.css';
 import { PizzaContext } from "../../context/PizzaContext.jsx";
+import { CartContext } from "../../context/CartContext.jsx";
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 
 export default function PizzaComponent() {
     
   const {pizza, fetchPizza} = useContext(PizzaContext);
+
+  const {addItem} = useContext(CartContext);
+
+    //Inicializamos la función de navegación
+    const navigate = useNavigate();
 
     //obtener parametro de la url
     const {id} = useParams();
@@ -58,7 +65,10 @@ export default function PizzaComponent() {
                 </p>
                 
                 {/* Botón de Añadir */}
-                <Button variant="dark" className="button-card">
+                <Button variant="dark" className="button-card"  onClick={() => { 
+                                addItem(id, pizza.desc, pizza.img, pizza.ingredients, pizza.name, pizza.price); 
+                                navigate('/cart'); 
+                            }}>
                     Añadir  <FaShoppingCart className="button-icon-card" />
                 </Button>
 

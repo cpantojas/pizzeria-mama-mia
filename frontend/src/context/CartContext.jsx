@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { pizzaCart } from "../assets/pizzas";
+import Swal from 'sweetalert2'
 
 export const CartContext = createContext();
 
@@ -37,8 +38,45 @@ const CartProvider = ({ children }) => {
           return sumatotal;
       }
 
+      const checkOut = async (usertoken,usercart) =>{    
+
+        try {
+            const res = await fetch('http://localhost:5000/api/checkouts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                    Authorization: `Bearer ${usertoken}`,
+                },
+                body: JSON.stringify({
+                cart: usercart,
+                }),
+            });
+
+            //console.log("Request sent with body:", usercart);
+            
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            const data = await res.json();
+            //console.log("checkout successful:", data);
+
+            if (data.message === "Checkout successful") {
+              Swal.fire({
+              title: 'Compra realizada con éxito!',
+            })
+
+            }
+            
+        } catch (error) {
+            console.error("Error during checkout:", error);
+            throw error
+        }
+        
+    }
+
   return (
-    <CartContext.Provider value={{ cart, setCart, addItem, decreaseItem, calculateTotal }}>
+    <CartContext.Provider value={{ cart, setCart, addItem, decreaseItem, calculateTotal, checkOut }}>
       {children}
     </CartContext.Provider>
   );

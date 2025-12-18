@@ -9,7 +9,7 @@ export default function LoginComponent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { token,logIn } = useContext(UserContext);
+    const { logIn } = useContext(UserContext);
 
     function onEmailChange({target}){
         setEmail(target.value)
@@ -37,8 +37,7 @@ export default function LoginComponent() {
         const errorMessage = validateForm();
         if(errorMessage===""){
             setError(errorMessage);
-            logIn(token)
-            alert("Los datos de Login son válidos!");
+            logIn(JSON.stringify({email, password}));
         }else{
             setError(errorMessage);
         }

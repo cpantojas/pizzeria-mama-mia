@@ -6,9 +6,9 @@ import "./cartComponent.css"
 
 export default function CartComponent() {
     
-    const {cart, addItem, decreaseItem, calculateTotal} = useContext(CartContext);
+    const {cart, addItem, decreaseItem, calculateTotal, checkOut} = useContext(CartContext);
 
-    const { token } = useContext(UserContext);
+    const { isAuthenticated, token } = useContext(UserContext);
 
     return (
         <>
@@ -44,7 +44,7 @@ export default function CartComponent() {
 
                 <Row>
                     <Col>
-                    <Button variant="dark" size="lg" className="pay-button w-100" disabled={!token}>Pagar</Button>
+                    <Button variant="dark" size="lg" className="pay-button w-100" disabled={!isAuthenticated} onClick={() => checkOut(token, cart)}>Pagar</Button>
                     </Col>
                 </Row>
             </Container>
